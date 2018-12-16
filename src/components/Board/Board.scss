@@ -1,0 +1,6 @@
+div.board {
+    width: 100%;
+    background: #eab92d;
+    background: radial-gradient(ellipse at center, #eab92d 57%, #c79810 99%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eab92d', endColorstr='#c79810', GradientType=1);
+}

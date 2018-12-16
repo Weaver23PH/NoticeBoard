@@ -1,0 +1,34 @@
+@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  font-family: "Lato", sans-serif;
+  min-height: 100%;
+  @media screen and (min-resolution: 120dpi) {
+
+    body {
+      transform: scale(0.8);
+      transform-origin: top left;
+      width: 125%;
+      height: 125%;
+    }
+  }
+}
+
+
+body,
+html,
+div.board,
+div#App{
+  height: 100%;
+  overflow: hidden;
+}
