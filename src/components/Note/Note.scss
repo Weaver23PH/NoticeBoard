@@ -1,12 +1,10 @@
 @function get-vw($target) {
     $vw-context: 1000 * 0.01 * 1px;
-
     @return $target / $vw-context * 1vw;
 }
 
 @function get-vh($target) {
     $vh-context: 1000 * 0.01 * 1px;
-
     @return $target / $vh-context * 1vh;
 }
 
@@ -22,9 +20,7 @@ div.Note {
     position: absolute;
     cursor: -webkit-grab;
     box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
-    right: randomBetween(0, 1080 - 150) px;
-    top: randomBetween(0, 1920 - 150) px;
-    transform: rotate(randomBetween(-15, 15) deg);
+   
 
     div.Note:active {
         cursor: -webkit-grabbing;
@@ -51,12 +47,6 @@ div.Note {
     textarea {
         height: 75%;
         background: rgba(255, 255, 255, 0.5);
-    }
-
-    .glyphicon-plus {
-        position: fixed;
-        top: 10px;
-        right: 10px;
     }
 }
 

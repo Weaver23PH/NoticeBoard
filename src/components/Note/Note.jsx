@@ -9,16 +9,16 @@ class Note extends React.Component {
             editing: false
         }
     }
-    // randomBetween = (min, max) => {
-    //     return (min + Math.ceil(Math.random() * max));
-    // };
-    // componentWillMount() {
-    //     this.style = {
-    //         right: this.randomBetween(0, window.innerWidth - 150) + 'px',
-    //         top: this.randomBetween(0, window.innerHeight - 150) + 'px',
-    //         transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)'
-    //     };
-    // };
+    randomBetween = (min, max) => {
+        return (min + Math.ceil(Math.random() * max));
+    };
+    componentWillMount() {
+        this.style = {
+            right: this.randomBetween(0, window.innerWidth - 150) + 'px',
+            top: this.randomBetween(0, window.innerHeight - 150) + 'px',
+            transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)'
+        };
+    };
     // componentDidMount() {
     //     $(ReactDOM.findDOMNode(this)).draggable();
     // };
@@ -35,7 +35,7 @@ class Note extends React.Component {
     renderDisplay() {
         return (
             <div className={styles.Note}
-            // style={this.style}
+            style={this.style}
             >
                 <p>{this.props.children}</p>
                 <span>
