@@ -1,69 +1,69 @@
-
 @function get-vw($target) {
-  $vw-context: (1000*.01) * 1px;
-  @return ($target/$vw-context) * 1vw;
+    $vw-context: 1000 * 0.01 * 1px;
+
+    @return $target / $vw-context * 1vw;
 }
 
 @function get-vh($target) {
-  $vh-context: (1000*.01) * 1px;
-  @return ($target/$vh-context) * 1vh
-}
-@function randomBetween($min, $max) {
-  @return ($min + ceil(random() * $max));
+    $vh-context: 1000 * 0.01 * 1px;
+
+    @return $target / $vh-context * 1vh;
 }
 
+@function randomBetween($min, $max) {
+    @return $min + ceil(random() * $max);
+}
 
 div.Note {
-  height: 150px;
-  width: 150px;
-  background-color: yellow;
-  margin: 2px 0;
-  position: absolute;
-  cursor: -webkit-grab;
-  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
-  right: randomBetween(0, (600 - 150))px;
-  top: randomBetween(0, (800 - 150))px;
-  transform: rotate(randomBetween(-15, 15)deg);
-
-  div.Note:active {
-    cursor: -webkit-grabbing;
-  }
-
-  p {
-    font-size: 22px;
-    padding: 5px;
-    font-family: "Shadows Into Light", Arial sans-serif;
-  }
-
-  span {
+    height: 150px;
+    width: 150px;
+    background-color: yellow;
+    margin: 2px 0;
     position: absolute;
-    bottom: 2px;
-    right: 2px;
-    opacity: 0;
-    transition: opacity .25s linear;
-  }
+    cursor: -webkit-grab;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
+    right: randomBetween(0, 1080 - 150) px;
+    top: randomBetween(0, 1920 - 150) px;
+    transform: rotate(randomBetween(-15, 15) deg);
 
-  button {
-    margin: 2px;
-  }
+    div.Note:active {
+        cursor: -webkit-grabbing;
+    }
 
-  textarea {
-    height: 75%;
-    background: rgba(255, 255, 255, .5);
-  }
+    p {
+        font-size: 22px;
+        padding: 5px;
+        font-family: "Shadows Into Light", Arial sans-serif;
+    }
 
-  .glyphicon-plus {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-  }
+    span {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        opacity: 0;
+        transition: opacity .25s linear;
+
+        button {
+            margin: 2px;
+        }
+    }
+
+    textarea {
+        height: 75%;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .glyphicon-plus {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
 }
 
-
 div.Note:hover {
-  z-index: 100;
+    z-index: 100;
 
-  span {
-    opacity: 1;
-  }
+    span {
+        opacity: 1;
+    }
 }
