@@ -1,16 +1,3 @@
-@function get-vw($target) {
-    $vw-context: 1000 * 0.01 * 1px;
-    @return $target / $vw-context * 1vw;
-}
-
-@function get-vh($target) {
-    $vh-context: 1000 * 0.01 * 1px;
-    @return $target / $vh-context * 1vh;
-}
-
-@function randomBetween($min, $max) {
-    @return $min + ceil(random() * $max);
-}
 
 div.Note {
     height: 150px;
@@ -27,7 +14,7 @@ div.Note {
     }
 
     p {
-        font-size: 22px;
+        font-size: 15px;
         padding: 5px;
         font-family: "Shadows Into Light", Arial sans-serif;
     }
@@ -47,6 +34,7 @@ div.Note {
     textarea {
         height: 75%;
         background: rgba(255, 255, 255, 0.5);
+        z-index: 200;
     }
 }
 
