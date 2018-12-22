@@ -9,16 +9,7 @@ class Board extends React.Component {
             notes: []
         }
     }
-    componentWillMount() {
-        let self = this;
-        if (this.props.count) {
-            $.getJSON("https://baconipsum.com/api/?type=all-meat&sentences=" + this.props.count + "&start-with-lorem=1", function (results) {
-                    results[0].split('. ').forEach(function (sentence) {
-                        self.add(sentence.substring(0, 40));
-                    });
-                });
-        }
-    }
+    
     nextId() {
         this.uniqueId = this.uniqueId || 0;
         return this.uniqueId++;
