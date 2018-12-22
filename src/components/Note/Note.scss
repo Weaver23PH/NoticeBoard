@@ -1,4 +1,3 @@
-
 div.Note {
     height: 150px;
     width: 150px;
@@ -7,7 +6,6 @@ div.Note {
     position: absolute;
     cursor: -webkit-grab;
     box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.2);
-   
 
     div.Note:active {
         cursor: -webkit-grabbing;
@@ -34,13 +32,12 @@ div.Note {
     textarea {
         height: 75%;
         background: rgba(255, 255, 255, 0.5);
-        z-index: 200;
     }
 }
 
 div.Note:hover {
-    z-index: 100;
-
+    z-index: 50;
+    transform: none;
     span {
         opacity: 1;
     }
