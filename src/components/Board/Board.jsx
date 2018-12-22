@@ -12,8 +12,7 @@ class Board extends React.Component {
     componentWillMount() {
         let self = this;
         if (this.props.count) {
-            $.getJSON("https://baconipsum.com/api/?type=all-meat&sentences=" +
-                this.props.count + "&start-with-lorem=1", function (results) {
+            $.getJSON("https://baconipsum.com/api/?type=all-meat&sentences=" + this.props.count + "&start-with-lorem=1", function (results) {
                     results[0].split('. ').forEach(function (sentence) {
                         self.add(sentence.substring(0, 40));
                     });
@@ -68,7 +67,7 @@ class Board extends React.Component {
         return (
 
             <div style={divStyle} className={styles.board}>
-                    {this.state.notes.map(this.eachNote)}
+                {this.state.notes.map(this.eachNote)}
                 <button style={buttonStyle} className="btn btn-sm btn-success glyphicon glyphicon-plus" onClick={this.add.bind(null, "New Note")}>Add note</button>
             </div>
         )
