@@ -12,8 +12,8 @@ class Board extends React.Component {
     componentWillMount() {
         let self = this;
         if (this.props.count) {
-            $.getJSON("http://baconipsum.com/api/?type=all-meat&sentences=" +
-                this.props.count + "&start-with-lorem=1&callback=?", function (results) {
+            $.getJSON("https://baconipsum.com/api/?type=all-meat&sentences=" +
+                this.props.count + "&start-with-lorem=1", function (results) {
                     results[0].split('. ').forEach(function (sentence) {
                         self.add(sentence.substring(0, 40));
                     });
