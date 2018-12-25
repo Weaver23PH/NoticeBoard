@@ -15,7 +15,7 @@ class App extends React.Component {
         };
         return (
             <div style={style} className={styles.App}>
-                <Board count={25}/ >
+                <Board count={15}/ >
             </div>
         )
     }

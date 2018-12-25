@@ -1,7 +1,6 @@
 div.Note {
     height: 150px;
     width: 150px;
-    background-color: yellow;
     margin: 2px 0;
     position: absolute;
     cursor: -webkit-grab;
@@ -14,7 +13,12 @@ div.Note {
     p {
         font-size: 15px;
         padding: 5px;
-        font-family: "Shadows Into Light", Arial sans-serif;
+        font-family: "Lato", Arial sans-serif;
+        word-wrap: break-word;
+    }
+    p.message{
+        font-size: 16px;
+        padding: 5px;
     }
 
     span {
@@ -29,15 +33,19 @@ div.Note {
         }
     }
 
+    div.radioBox {
+        font-size: 10px;
+    }
+
     textarea {
         height: 75%;
-        background: rgba(255, 255, 255, 0.5);
+        width: 95%;
+        background: rgba(255, 255, 255, 1);
     }
 }
 
 div.Note:hover {
     z-index: 50;
-    transform: none;
     span {
         opacity: 1;
     }
