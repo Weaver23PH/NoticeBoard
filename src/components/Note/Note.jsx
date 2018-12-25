@@ -65,11 +65,11 @@ class Note extends React.Component {
         if (cat == "buy/sell") {
             this.setState({ color: "yellow" });
         } else if (cat == "help") {
-            this.setState({ color: "red" });
+            this.setState({ color: "orangered" });
         } else if (cat == "other") {
-            this.setState({ color: "blue" });
+            this.setState({ color: "lightblue" });
         } else if (cat == "give away") {
-            this.setState({ color: "green" });
+            this.setState({ color: "lawngreen" });
         } else {
             this.setState({ color: "white" });
         }
@@ -118,7 +118,7 @@ class Note extends React.Component {
                 {this.state.msgPresent == false && <div className={styles.Note} style={this.editStyle}>
                     <input ref="newText" defaultValue={this.props.children}
                         className="form-control" maxlength="50" size="50" placeholder="enter subject here"></input>
-                    <textarea name="message" value={this.state.message} onChange={this.handleMessageChange} className="form-control" cols="30" rows="10" placeholder="enter some details here"></textarea>
+                    <textarea name="message" value={this.state.message} onChange={this.handleMessageChange} className="form-control" cols="30" rows="10" maxlength="600" placeholder="enter some details here"></textarea>
                     <input type="email" value={this.state.mail} onChange={this.handleMailChange}
                         className="form-control" placeholder="enter email here" size="50"></input>
                     {this.state.category == "" && <div className={styles.radioBox}>
