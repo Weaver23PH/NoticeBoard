@@ -49,7 +49,7 @@ class Note extends React.Component {
 
     read = () => {
         this.setState({ editing: !this.state.editing });
-        this.setState({ msgPresent: !this.state.msgPresent })
+        this.setState({ msgPresent: !this.state.msgPresent });
     }
     handleMailChange = (event) => {
         this.setState({
@@ -87,7 +87,7 @@ class Note extends React.Component {
                 alert("this is not a correct email format")
             } else {
                 let email = this.state.mail;
-                let subject = this.props.children;
+                let subject = "Re: " + this.props.children;
                 let mailto_link = 'mailto:' + email + "?subject=" + subject;
                 window.location.href = mailto_link;
             }
@@ -133,21 +133,21 @@ class Note extends React.Component {
                     <button onClick={this.save} disabled={this.state.mail == ""} className="btn btn-success btn-sm"><i className="fas fa-save"></i></button>
                 </div>}
                 {this.state.msgPresent == true && <div className={styles.Note} style={this.editStyle}><p className={styles.message}>{this.state.message}</p>
-                <span>
-                <button onClick={this.read} className="btn btn-success btn-sm"><i class="fas fa-sign-out-alt"></i></button>
-                </span>
+                    <span>
+                        <button onClick={this.read} className="btn btn-success btn-sm"><i class="fas fa-sign-out-alt"></i></button>
+                    </span>
                 </div>}
             </div>
-            )
-        }
+        )
+    }
     render() {
         if (this.state.editing) {
             return this.renderForm();
-            }
+        }
         else {
             return this.renderDisplay();
-            }
         }
-    };
-    
+    }
+};
+
 export default Note;
