@@ -7,10 +7,10 @@ class Board extends React.Component {
         super(props);
         this.state = {
             notes: [],
-            helpCheck: "true",
-            sellCheck: "true",
-            giveCheck: "true",
-            otherCheck: "true"
+            helpCheck: true,
+            sellCheck: true,
+            giveCheck: true,
+            otherCheck: true,
         }
     }
     componentWillMount() {
@@ -53,28 +53,41 @@ class Board extends React.Component {
                 index={i}
                 onChange={this.update}
                 onRemove={this.remove}
+                helpCheck = {this.state.helpCheck}
+                sellCheck = {this.state.sellCheck}
+                giveCheck = {this.state.giveCheck}
+                otherCheck = {this.state.otherCheck}
+                onHelpUpdate={this.helpCheckClick}
+                onSellUpdate={this.sellCheckClick}
+                onGiveUpdate={this.giveCheckClick}
+                onOtherUpdate={this.otherCheckClick}
             >{note.note}</Note>
         );
     };
+
     helpCheckClick = () => {
         this.setState({
             helpCheck: !this.state.helpCheck
         });
+        return this.state.helpCheck
     };
     sellCheckClick = () => {
         this.setState({
             sellCheck: !this.state.sellCheck
         });
-    };    
+        return this.state.sellCheck;
+    };
     giveCheckClick = () => {
         this.setState({
             giveCheck: !this.state.giveCheck
         });
+        return this.state.giveCheck;
     };
     otherCheckClick = () => {
         this.setState({
             otherCheck: !this.state.otherCheck
         });
+        return this.state.otherCheck;
     };
     render() {
         let divStyle = {
@@ -97,14 +110,13 @@ class Board extends React.Component {
             flexDirection: "row"
         }
         return (
-
             <div style={divStyle} className={styles.board}>
                 {this.state.notes.map(this.eachNote)}
                 <div style={divSelectStyle} >
-                    <label><input type="checkbox" name="helpCheck" id="helpCheck" checked={this.state.helpCheck} onClick={this.helpCheckClick} />HELP</label>
-                    <label><input type="checkbox" name="sellCheck" id="sellCheck" checked={this.state.sellCheck} onClick={this.sellCheckClick} />BUY/SELL</label>
-                    <label><input type="checkbox" name="giveCheck" id="giveCheck" checked={this.state.giveCheck} onClick={this.giveCheckClick} />GIVE AWAY</label>
-                    <label><input type="checkbox" name="otherCheck" id="otherCheck" checked={this.state.otherCheck} onClick={this.otherCheckClick} />OTHER</label>
+                    <label><input type="checkbox" name="helpCheck" id="helpCheck" checked={this.state.helpCheck} onChange={this.helpCheckClick} />HELP</label>
+                    <label><input type="checkbox" name="sellCheck" id="sellCheck" checked={this.state.sellCheck} onChange={this.sellCheckClick} />BUY/SELL</label>
+                    <label><input type="checkbox" name="giveCheck" id="giveCheck" checked={this.state.giveCheck} onChange={this.giveCheckClick} />GIVE AWAY</label>
+                    <label><input type="checkbox" name="otherCheck" id="otherCheck" checked={this.state.otherCheck} onChange={this.otherCheckClick} />OTHER</label>
                 </div>
                 <button style={buttonStyle} className="btn btn-sm btn-success glyphicon glyphicon-plus" onClick={this.add.bind(null, "New Note")}>Add note</button>
             </div>

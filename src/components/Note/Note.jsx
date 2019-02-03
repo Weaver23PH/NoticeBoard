@@ -9,9 +9,14 @@ class Note extends React.Component {
         this.state = {
             editing: false,
             mail: "",
-            category: "",
+            category: "none",
             color: "white",
-            msgPresent: false
+            msgPresent: false,
+            helpCheck: this.props.helpCheck,
+            sellCheck: this.props.sellCheck,
+            giveCheck: this.props.giveCheck,
+            otherCheck: this.props.otherCheck,
+            visibility: "visible"
         }
     }
     randomBetween = (min, max) => {
@@ -22,6 +27,7 @@ class Note extends React.Component {
             right: this.randomBetween(0, window.innerWidth - 150) + 'px',
             top: this.randomBetween(0, window.innerHeight - 150) + 'px',
             transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)',
+            visibility: this.state.visibility
         };
         this.editStyle = {
             right: `50%`,
@@ -29,9 +35,10 @@ class Note extends React.Component {
             zIndex: 500,
             backgroundColor: "white",
             height: `350px`,
-            width: `350px`
+            width: `350px`, 
         }
     };
+
     componentDidMount() {
         $(ReactDOM.findDOMNode(this)).draggable();
     };
@@ -62,23 +69,64 @@ class Note extends React.Component {
         })
     }
     changeColor = (cat) => {
-        if (cat == "buy/sell") {
-            this.setState({ color: "yellow" });
-        } else if (cat == "help") {
-            this.setState({ color: "orangered" });
-        } else if (cat == "other") {
-            this.setState({ color: "lightblue" });
-        } else if (cat == "give away") {
-            this.setState({ color: "lawngreen" });
-        } else {
-            this.setState({ color: "white" });
+        switch (cat) {
+            case "buy/sell":
+                this.setState({ color: "yellow" });
+                break;
+            case "help":
+                this.setState({ color: "orangered" });
+                break;
+            case "other":
+                this.setState({ color: "lightblue" });
+                break;
+            case "give away":
+                this.setState({ color: "lawngreen" });
+                break;
+            case "none":
+                this.setState({ color: "white" });
+                break;
         }
     }
-
+    categoryDisplay = () => {
+        let cat = this.state.category;
+        console.log("i work");
+        switch (cat) {
+            case "buy/sell":
+                if (this.state.sellCheck == false) {
+                    this.setState({ visibility: "hidden" });
+                } else {
+                    this.setState({ visibility: "visible" });
+                }
+                break;
+            case "help":
+                if (this.state.helpCheck == false) {
+                    this.setState({ visibility: "hidden" });
+                } else {
+                    this.setState({ visibility: "visible" });
+                }
+                break;
+            case "other":
+                if (this.state.otherCheck == false) {
+                    this.setState({ visibility: "hidden" });
+                } else {
+                    this.setState({ visibility: "visible" });
+                }
+                break;
+            case "give away":
+                if (this.state.giveCheck == false) {
+                    this.setState({ visibility: "hidden" });
+                } else {
+                    this.setState({ visibility: "visible" });
+                }
+                break;
+            case "none":
+                this.setState({ visibility: "hidden" });
+                break;
+        }
+    }
     handleOptionChange = (event) => {
         let cat = event.target.value;
         this.setState({ category: cat });
-        console.log(cat);
         this.changeColor(cat);
     }
     mailto = () => {
@@ -93,16 +141,29 @@ class Note extends React.Component {
             }
         }
     }
+    helpCheckClick = () => {
+        this.props.onHelpUpdate
+    };
+    sellCheckClick = () => {
+        this.props.onSellUpdate
+    };
+    giveCheckClick = () => {
+        this.props.onGiveUpdate
+    };
+    otherCheckClick = () => {
+        this.props.onOtherUpdate
+    };
     renderDisplay() {
+        this.categoryDisplay;
         return (
             <div className={styles.Note}
                 style={{ backgroundColor: this.state.color, ...this.renderStyle }}
             >
                 <p>{this.props.children}</p>
                 <span>
-                    {this.state.category == "" && <button onClick={this.edit}
+                    {this.state.category == "none" && <button onClick={this.edit}
                         className="btn btn-primary"><i className="fas fa-pencil-alt"></i></button>}
-                    {this.state.category != "" && <button onClick={this.read}
+                    {this.state.category != "none" && <button onClick={this.read}
                         className="btn btn-primary"><i className="fas fa-book-open"></i></button>}
                     <button onClick={this.remove}
                         className="btn btn-danger"><i className="fas fa-trash-alt"></i></button>
@@ -121,7 +182,7 @@ class Note extends React.Component {
                     <textarea name="message" value={this.state.message} onChange={this.handleMessageChange} className="form-control" cols="30" rows="10" maxlength="600" placeholder="enter some details here"></textarea>
                     <input type="email" value={this.state.mail} onChange={this.handleMailChange}
                         className="form-control" placeholder="enter email here" size="50"></input>
-                    {this.state.category == "" && <div className={styles.radioBox}>
+                    {this.state.category == "none" && <div className={styles.radioBox}>
                         <label>
                             <input type="radio" name="buy/sell" value="buy/sell" checked={this.state.category == "buy/sell"} onChange={this.handleOptionChange} />buy/sell</label>
                         <label>
@@ -134,7 +195,7 @@ class Note extends React.Component {
                 </div>}
                 {this.state.msgPresent == true && <div className={styles.Note} style={this.editStyle}><p className={styles.message}>{this.state.message}</p>
                     <span>
-                        <button onClick={this.read} className="btn btn-success btn-sm"><i class="fas fa-sign-out-alt"></i></button>
+                        <button onClick={this.read} className="btn btn-success btn-sm"><i className="fas fa-sign-out-alt"></i></button>
                     </span>
                 </div>}
             </div>
@@ -146,6 +207,7 @@ class Note extends React.Component {
         }
         else {
             return this.renderDisplay();
+            this.categoryDisplay;
         }
     }
 };
