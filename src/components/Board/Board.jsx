@@ -69,25 +69,21 @@ class Board extends React.Component {
         this.setState({
             helpCheck: !this.state.helpCheck
         });
-        return this.state.helpCheck
     };
     sellCheckClick = () => {
         this.setState({
             sellCheck: !this.state.sellCheck
         });
-        return this.state.sellCheck;
     };
     giveCheckClick = () => {
         this.setState({
             giveCheck: !this.state.giveCheck
         });
-        return this.state.giveCheck;
     };
     otherCheckClick = () => {
         this.setState({
             otherCheck: !this.state.otherCheck
         });
-        return this.state.otherCheck;
     };
     render() {
         let divStyle = {

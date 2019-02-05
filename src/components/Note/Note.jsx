@@ -8,7 +8,7 @@ class Note extends React.Component {
         super(props);
         this.state = {
             editing: false,
-            mail: "",
+            mail: "e-mail",
             category: "none",
             color: "white",
             msgPresent: false,
@@ -16,7 +16,7 @@ class Note extends React.Component {
             sellCheck: this.props.sellCheck,
             giveCheck: this.props.giveCheck,
             otherCheck: this.props.otherCheck,
-            visibility: "visible"
+            visiblity: true
         }
     }
     randomBetween = (min, max) => {
@@ -27,15 +27,14 @@ class Note extends React.Component {
             right: this.randomBetween(0, window.innerWidth - 150) + 'px',
             top: this.randomBetween(0, window.innerHeight - 150) + 'px',
             transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)',
-            visibility: this.state.visibility
         };
         this.editStyle = {
             right: `50%`,
             top: `33%`,
             zIndex: 500,
             backgroundColor: "white",
-            height: `350px`,
-            width: `350px`, 
+            height: `375px`,
+            width: `350px`,
         }
     };
 
@@ -89,38 +88,38 @@ class Note extends React.Component {
     }
     categoryDisplay = () => {
         let cat = this.state.category;
-        console.log("i work");
+
         switch (cat) {
             case "buy/sell":
                 if (this.state.sellCheck == false) {
-                    this.setState({ visibility: "hidden" });
+                    this.setState({ visiblity: false });
                 } else {
-                    this.setState({ visibility: "visible" });
+                    this.setState({ visiblity: true });
                 }
                 break;
             case "help":
                 if (this.state.helpCheck == false) {
-                    this.setState({ visibility: "hidden" });
+                    this.setState({ visiblity: false });
                 } else {
-                    this.setState({ visibility: "visible" });
+                    this.setState({ visiblity: true });
                 }
                 break;
             case "other":
                 if (this.state.otherCheck == false) {
-                    this.setState({ visibility: "hidden" });
+                    this.setState({ visiblity: false });
                 } else {
-                    this.setState({ visibility: "visible" });
+                    this.setState({ visiblity: true });
                 }
                 break;
             case "give away":
                 if (this.state.giveCheck == false) {
-                    this.setState({ visibility: "hidden" });
+                    this.setState({ visiblity: false });
                 } else {
-                    this.setState({ visibility: "visible" });
+                    this.setState({ visiblity: true });
                 }
                 break;
             case "none":
-                this.setState({ visibility: "hidden" });
+                this.setState({ visiblity: true });
                 break;
         }
     }
@@ -154,7 +153,6 @@ class Note extends React.Component {
         this.props.onOtherUpdate
     };
     renderDisplay() {
-        this.categoryDisplay;
         return (
             <div className={styles.Note}
                 style={{ backgroundColor: this.state.color, ...this.renderStyle }}
@@ -205,9 +203,8 @@ class Note extends React.Component {
         if (this.state.editing) {
             return this.renderForm();
         }
-        else {
+        else if (!this.state.editing && this.state.visiblity) {
             return this.renderDisplay();
-            this.categoryDisplay;
         }
     }
 };
