@@ -29,11 +29,12 @@ class Board extends React.Component {
         return this.uniqueId++;
     }
 
-    add = (text) => {
+    add = (text, cat) => {
         let arr = this.state.notes;
         arr.push({
             id: this.nextId(),
-            note: text
+            note: text,
+            cat: cat
         });
         this.setState({ notes: arr });
     };
@@ -53,14 +54,7 @@ class Board extends React.Component {
                 index={i}
                 onChange={this.update}
                 onRemove={this.remove}
-                helpCheck = {this.state.helpCheck}
-                sellCheck = {this.state.sellCheck}
-                giveCheck = {this.state.giveCheck}
-                otherCheck = {this.state.otherCheck}
-                onHelpUpdate={this.helpCheckClick}
-                onSellUpdate={this.sellCheckClick}
-                onGiveUpdate={this.giveCheckClick}
-                onOtherUpdate={this.otherCheckClick}
+                returnCat={this.returnCat}
             >{note.note}</Note>
         );
     };
@@ -69,6 +63,7 @@ class Board extends React.Component {
         this.setState({
             helpCheck: !this.state.helpCheck
         });
+        this.updateBoard();
     };
     sellCheckClick = () => {
         this.setState({
@@ -85,6 +80,20 @@ class Board extends React.Component {
             otherCheck: !this.state.otherCheck
         });
     };
+    returnCat = (category) => {
+        console.log(" this is retcat " + category);
+        this.updateBoard(category)
+    }
+    updateBoard = (category) => {
+        // this.state.notes.map((element) => console.log(element.id))
+        console.log( " this is inv chek " + category);
+        
+    };
+    invisibiltyCheck = (note) => {
+        let cat = note.returnCat();
+        console.log(cat);
+    };
+
     render() {
         let divStyle = {
             position: "fixed",
@@ -117,8 +126,9 @@ class Board extends React.Component {
                 <button style={buttonStyle} className="btn btn-sm btn-success glyphicon glyphicon-plus" onClick={this.add.bind(null, "New Note")}>Add note</button>
             </div>
         )
-    }
+    };
 }
+
 export default Board;
 // propTypes: {
 //     count: function(props, propName) {

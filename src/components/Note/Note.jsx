@@ -12,11 +12,6 @@ class Note extends React.Component {
             category: "none",
             color: "white",
             msgPresent: false,
-            helpCheck: this.props.helpCheck,
-            sellCheck: this.props.sellCheck,
-            giveCheck: this.props.giveCheck,
-            otherCheck: this.props.otherCheck,
-            visiblity: true
         }
     }
     randomBetween = (min, max) => {
@@ -86,42 +81,9 @@ class Note extends React.Component {
                 break;
         }
     }
-    categoryDisplay = () => {
-        let cat = this.state.category;
-
-        switch (cat) {
-            case "buy/sell":
-                if (this.state.sellCheck == false) {
-                    this.setState({ visiblity: false });
-                } else {
-                    this.setState({ visiblity: true });
-                }
-                break;
-            case "help":
-                if (this.state.helpCheck == false) {
-                    this.setState({ visiblity: false });
-                } else {
-                    this.setState({ visiblity: true });
-                }
-                break;
-            case "other":
-                if (this.state.otherCheck == false) {
-                    this.setState({ visiblity: false });
-                } else {
-                    this.setState({ visiblity: true });
-                }
-                break;
-            case "give away":
-                if (this.state.giveCheck == false) {
-                    this.setState({ visiblity: false });
-                } else {
-                    this.setState({ visiblity: true });
-                }
-                break;
-            case "none":
-                this.setState({ visiblity: true });
-                break;
-        }
+    returnCategory = () => {
+        let category = this.state.category;
+        this.props.returnCat(category);
     }
     handleOptionChange = (event) => {
         let cat = event.target.value;
@@ -140,18 +102,7 @@ class Note extends React.Component {
             }
         }
     }
-    helpCheckClick = () => {
-        this.props.onHelpUpdate
-    };
-    sellCheckClick = () => {
-        this.props.onSellUpdate
-    };
-    giveCheckClick = () => {
-        this.props.onGiveUpdate
-    };
-    otherCheckClick = () => {
-        this.props.onOtherUpdate
-    };
+
     renderDisplay() {
         return (
             <div className={styles.Note}
@@ -203,7 +154,8 @@ class Note extends React.Component {
         if (this.state.editing) {
             return this.renderForm();
         }
-        else if (!this.state.editing && this.state.visiblity) {
+        else if (!this.state.editing) {
+            this.returnCategory();
             return this.renderDisplay();
         }
     }
