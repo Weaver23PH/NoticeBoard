@@ -32,7 +32,8 @@
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0", 
+    "lodash": ">=4.17.13"
   },
   "repository": {
     "type": "git",
